@@ -1,6 +1,7 @@
 import random
+from BoxManagement import Box
 
-class Minesweeper:
+class BoardGenerator:
 
     def __init__(self, difficulty, num_mines=None, num_boxes_vertical=None, num_boxes_horizontal=None):
 
@@ -26,7 +27,7 @@ class Minesweeper:
         for i in range(self.num_boxes_vertical):
             row = []
             for j in range(self.num_boxes_horizontal):
-                row.append(0)
+                row.append(Box(i,j))
             self.board.append(row)
 
         self.num_mines_placed = 0
@@ -34,23 +35,21 @@ class Minesweeper:
         while self.num_mines_placed < self.num_mines:
             x = random.randint(0, self.num_boxes_horizontal-1)
             y = random.randint(0, self.num_boxes_vertical-1)
-            if self.board[x][y] != -1:
-                self.place_mine(x,y)
+           
+
+            self.board.place_mine(x,y)
 
     def check_box(self, x, y):
-        return self.board[x][y] == -1
+        return self.board[x][y].is_mine()
 
     def place_mine(self, x, y):
-        if self.board != -1:
-            self.board[x][y] = -1
+        box = self.board[x][y]
+         if not box.is_mine():
+            box.set_mine()
             self.num_mines_placed += 1
             for i in range(max(0, x-1), min(x+2, self.num_boxes_horizontal)):
                 for j in range(max(0, y-1), min(y+2, self.num_boxes_vertical)):
-                    if self.board[i][j] != -1:
-                        self.board[i][j] += 1
-
-
-
-
-
-
+                    neighbor_box = self.board[i][j]
+                    if not neighbor_box.is_mine():
+                        neighbor_box.set_value(neighbor_box.value + 1)
+        
