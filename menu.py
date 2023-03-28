@@ -11,7 +11,7 @@ class Menu:
         self.win.config(bg="cornsilk4") 
         self.win.resizable(0,0)
         self.selection = None
-        self.win.iconbitmap('img/icono.ico')
+        #self.win.iconbitmap('img/icono.ico')
 
         self.opc1 = btn1
         self.opc2 = btn2
@@ -31,8 +31,8 @@ class Menu:
         opc4_button = Button(self.win, text = btn4, font = font_button, bg="cornsilk3", fg="black", command = self.option3).pack(pady=20)
 
 
-        lbl_img = Label(self.win, image = img)
-        lbl_img.pack()
+        #lbl_img = Label(self.win, image = img)
+        #lbl_img.pack()
 
         self.screen_width = self.win.winfo_screenwidth()
         self.screen_height = self.win.winfo_screenheight()
