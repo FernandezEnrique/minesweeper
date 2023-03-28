@@ -22,7 +22,11 @@ class Box:
     #coloca una bandera
     def flag(self):
         self.flagged = True
+        self.revealed = False
 
+    def unflag(self):
+        self.flagged = False
+    
     #coloca una mina
     def set_mine(self):
         self.mined = True
@@ -59,7 +63,7 @@ class Box:
 
         for i in range(-1, 1):
             for j in range(-1, 1):
-                if x!=1 or y !=1:
+                if x!=0 or y !=0:
                     neighbor_box = board[x+i][y+j]
                     if not neighbor_box.is_revealed():
                         neighbor_box.reveal()
