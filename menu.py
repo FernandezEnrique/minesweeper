@@ -4,7 +4,7 @@ from tkinter import font
 from PIL import ImageTk, Image
 
 class Menu:
-    def __init__(self, caption, msg, btn1, btn2, btn3, btn4):
+    def __init__(self, caption, msg, btn1="", btn2="", btn3="", btn4=""):
         self.win = Tk()
         self.win.title(caption)
         self.win.geometry(f"450x550")
@@ -25,10 +25,15 @@ class Menu:
         font_button = font.Font(family='Tahoma', size=16)
 
         Label(self.win, text=msg, font=font_button, bg="cornsilk3", fg="black").pack(pady=20)
-        opc1_button = Button(self.win, text = btn1, font = font_button, bg="cornsilk3", fg="black", command=self.option1).pack(pady=20)
-        opc2_button = Button(self.win, text = btn2, font = font_button, bg="cornsilk3", fg="black", command = self.option2).pack(pady=20)
-        opc3_button = Button(self.win, text = btn3, font = font_button, bg="cornsilk3", fg="black", command = self.option3).pack(pady=20)
-        opc4_button = Button(self.win, text = btn4, font = font_button, bg="cornsilk3", fg="black", command = self.option3).pack(pady=20)
+        if self.opc1 != "":
+            opc1_button = Button(self.win, text = btn1, font = font_button, bg="cornsilk3", fg="black", command=self.option1).pack(pady=20)
+        if self.opc2 != "":
+            opc2_button = Button(self.win, text = btn2, font = font_button, bg="cornsilk3", fg="black", command = self.option2).pack(pady=20)
+        if self.opc3 != "":
+            opc3_button = Button(self.win, text = btn3, font = font_button, bg="cornsilk3", fg="black", command = self.option3).pack(pady=20)
+        
+        if self.opc4 != "":
+            opc4_button = Button(self.win, text = btn4, font = font_button, bg="cornsilk3", fg="black", command = self.option3).pack(pady=20)
 
 
         #lbl_img = Label(self.win, image = img)
