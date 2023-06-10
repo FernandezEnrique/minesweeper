@@ -39,7 +39,8 @@ def get_board():
 
 
 def gameInit(lvertical, lhorizontal, lmines):
-    global mines, BOARD
+    global mines, BOARD,state
+    state = 0
     mines = lmines
     BOARD = [[CELL_EMPTY for _ in range(lhorizontal)] for _ in range(lvertical)]
 
@@ -111,8 +112,6 @@ def gameFlagCell(x,y):
 
     BOARD[x][y] ^= 1 << CELL_BIT_FLAG
 
-    print(BOARD[x][y])
-
     if(check_win()):
         state = STATE_WON
 
@@ -144,11 +143,3 @@ def gameClearCell(x, y):
 
         if (check_win()):
             state = STATE_WON
-
-def print_board():
-    rows = len(BOARD)
-    cols = len(BOARD[0])
-    for i in range(rows):
-        for j in range( cols):
-            print(BOARD[i][j], end=" ")
-        print()
